@@ -1,0 +1,179 @@
+/*상단 navbar*/
+.navbar {
+  width: 100%;
+  text-align: center;
+  padding: 10px 0;
+  margin: 0;
+  position: relative;
+}
+
+.navbar-top {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 40px;
+}
+
+.navbar-login {
+  font-size: 14px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+/* 로고 */
+.navbar-logo {
+  font-size: 48px;
+  font-weight: bold;
+  color: red;
+  margin: 10px 0;
+  cursor: pointer;
+}
+
+/* 메뉴 + 검색 영역 */
+.navbar-menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 15px 100px;
+  position: relative;
+}
+
+/* 메뉴 리스트 */
+.navbar-menu ul {
+  display: flex;
+  gap: 26px;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: "Roboto", "Noto Sans KR", sans-serif;
+  list-style: none;
+}
+
+.navbar-menu li {
+  cursor: pointer;
+  transition: color 0.2s ease-in-out;
+}
+
+.navbar-menu li:hover {
+  color: #e60023;
+}
+
+/* 검색 */
+.navbar-search {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #333;
+  padding: 5px;
+  width: auto;
+  position: absolute;
+  right: 50px;
+  cursor: pointer;
+  top: -112px;
+}
+
+.search-icon {
+  margin-right: 5px;
+  font-size: 14px;
+}
+
+.navbar-search input {
+  width: 180px;
+  opacity: 1;
+  outline: none;
+  border: none;
+  font-size: 15px;
+}
+
+.search-icon {
+  margin-right: 6px;
+  font-size: 17px;
+}
+
+.navbar-login svg {
+  margin-right: 4px;
+}
+
+/* 모바일 햄버거 버튼 */
+.navbar-hamburger {
+  display: none;
+  cursor: pointer;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+/* 모바일 전환 */
+@media (max-width: 1024px) {
+  .navbar-menu {
+    display: none;
+  }
+
+  .navbar-menu.active {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin: 0;
+    width: 70%;
+    max-width: 280px;
+    height: 100vh;
+    background: #fff;
+    transform: translateX(0);
+    transition: transform 0.35s ease-in-out;
+    z-index: 999;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 80px;
+    box-shadow: 4px 0 12px rgba(0, 0, 0, 0.18);
+    padding-bottom: 40px;
+  }
+
+  .navbar-menu ul {
+    flex-direction: column;
+    width: 100%;
+    text-align: center;
+    gap: 28px;
+    padding: 0;
+    margin: 0;
+  }
+
+  .navbar-menu li {
+    font-size: 18px;
+    font-weight: 600;
+    padding: 10px 0;
+  }
+
+  .navbar-hamburger {
+    display: block;
+    cursor: pointer;
+    position: absolute;
+    top: 22px;
+    left: 20px;
+    z-index: 1001;
+  }
+
+  .navbar-search {
+    position: static;
+    width: 70%;
+    border-bottom: 1px solid #aaa;
+    padding: 5px;
+    margin-top: 5px;
+    right: auto;
+    margin-bottom: 60px;
+  }
+
+  .navbar-search input {
+    width: 100%;
+    opacity: 1;
+    border: none;
+    outline: none;
+  }
+
+  .navbar-search.show input {
+    width: 100%;
+    opacity: 1;
+  }
+
+  .search-icon {
+    margin-right: 5px;
+    font-size: 14px;
+  }
+}
