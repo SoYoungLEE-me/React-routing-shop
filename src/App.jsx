@@ -1,9 +1,11 @@
+import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import ProductAll from "./page/ProductAll";
 import ProductDetail from "./page/ProductDetail";
 import Login from "./page/Login";
 import Navbar from "./components/Navbar";
+
 //1. 전체 상품 페이지, 로그인, 상품상세페이지
 //2. 전체 상품 페이지에서는 전체 상품 목록으르 볼 수 있다.
 //3. 상품 디ㅔ일을 눌렀으나, 로그인이 안되어있을 경우 로그인 페이지가 먼저 나온다.

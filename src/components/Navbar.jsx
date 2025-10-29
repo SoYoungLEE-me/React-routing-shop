@@ -1,3 +1,4 @@
+// Navbar.jsx
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -12,38 +13,49 @@ const Navbar = () => {
   const [searchOpen, setSearchOpen] = useState(false);
 
   return (
-    <header className="navbar">
-      <div className="navbar-top">
-        <div className="navbar-login">
+    <header className="hm-navbar">
+      <div className="hm-navbar__top">
+        <button className="hm-navbar__login" type="button">
           <FontAwesomeIcon icon={faUser} />
-          <span style={{ marginLeft: "4px" }}>로그인</span>
-        </div>
+          <span style={{ marginLeft: 4 }}>로그인</span>
+        </button>
       </div>
 
-      <div className="navbar-logo">
+      <div className="hm-navbar__logo">
         <img
           width={100}
           src="https://logos-world.net/wp-content/uploads/2020/04/HM-Logo-1999-present.jpg"
-        ></img>
+          alt="H&M"
+        />
       </div>
 
-      {/* 햄버거 버튼 (모바일 전용) */}
-      <div className="navbar-hamburger" onClick={() => setMenuOpen(!menuOpen)}>
+      {/* 햄버거 (모바일) */}
+      <button
+        className="hm-navbar__hamburger"
+        type="button"
+        aria-label="메뉴 열기"
+        onClick={() => setMenuOpen((v) => !v)}
+      >
         <FontAwesomeIcon icon={menuOpen ? faXmark : faBars} size="lg" />
-      </div>
+      </button>
 
-      <nav className={`navbar-menu ${menuOpen ? "active" : ""}`}>
-        <div className={`navbar-search ${searchOpen ? "show" : ""}`}>
-          <FontAwesomeIcon
-            icon={faMagnifyingGlass}
-            className="search-icon"
-            onClick={() => {
-              setSearchOpen(!searchOpen);
-            }}
-          />
+      <nav className={`hm-navbar__menu ${menuOpen ? "is-active" : ""}`}>
+        <div className={`hm-navbar__search ${searchOpen ? "is-show" : ""}`}>
+          <button
+            className="hm-navbar__search-btn"
+            type="button"
+            aria-label="검색 열기"
+            onClick={() => setSearchOpen((v) => !v)}
+          >
+            <FontAwesomeIcon
+              icon={faMagnifyingGlass}
+              className="hm-navbar__search-icon"
+            />
+          </button>
           <input type="text" placeholder="제품검색" />
         </div>
-        <ul>
+
+        <ul className="hm-navbar__list">
           <li>여성</li>
           <li>Divided</li>
           <li>남성</li>
