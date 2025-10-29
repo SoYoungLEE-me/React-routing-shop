@@ -7,17 +7,33 @@ import {
   faBars,
   faXmark,
 } from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = ({ authenticate, setAuthenticate }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
+  const navigate = useNavigate();
+
+  const goToLogin = () => {
+    navigate("/login");
+  };
+
+  const logout = () => {
+    setAuthenticate(false);
+  };
 
   return (
     <header className="hm-navbar">
       <div className="hm-navbar__top">
-        <button className="hm-navbar__login" type="button">
+        <button
+          className="hm-navbar__login"
+          type="button"
+          onClick={authenticate ? logout : goToLogin}
+        >
           <FontAwesomeIcon icon={faUser} />
-          <span style={{ marginLeft: 4 }}>로그인</span>
+          <span style={{ marginLeft: 4 }}>
+            {authenticate ? "로그아웃" : "로그인"}
+          </span>
         </button>
       </div>
 

@@ -242,3 +242,17 @@
 .badge-new {
   background: dodgerblue;
 }
+
+.page .container,
+main .container {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+@media (max-width: 768px) {
+  .page .container,
+  main .container {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}

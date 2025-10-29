@@ -5,6 +5,8 @@ import ProductAll from "./page/ProductAll";
 import ProductDetail from "./page/ProductDetail";
 import Login from "./page/Login";
 import Navbar from "./components/Navbar";
+import { useState } from "react";
+import PrivateRoute from "./route/PrivateRoute";
 
 //1. 전체 상품 페이지, 로그인, 상품상세페이지
 //2. 전체 상품 페이지에서는 전체 상품 목록으르 볼 수 있다.
@@ -16,13 +18,25 @@ import Navbar from "./components/Navbar";
 //8. 상품을 검색할 수 있어야 한다.
 
 function App() {
+  const [authenticate, setAuthenticate] = useState(false); //true면 로그인
+
   return (
     <>
-      <Navbar />
+      <Navbar authenticate={authenticate} setAuthenticate={setAuthenticate} />
       <Routes>
         <Route path="/" element={<ProductAll />} />
-        <Route path="/product/:id" element={<ProductDetail />} />
-        <Route path="/login" element={<Login />} />
+        <Route
+          path="/product/:id"
+          element={
+            <PrivateRoute authenticate={authenticate}>
+              <ProductDetail />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/login"
+          element={<Login setAuthenticate={setAuthenticate} />}
+        />
       </Routes>
     </>
   );
