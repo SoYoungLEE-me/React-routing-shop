@@ -6,7 +6,7 @@ const ProductAll = () => {
   const [productList, setProductList] = useState([]);
 
   const getProducts = async () => {
-    const url = `https://my-json-server.typicode.com/SoYoungLEE-me/React-routing-shop `;
+    const url = `https://my-json-server.typicode.com/SoYoungLEE-me/React-routing-shop/products`;
     const res = await fetch(url);
     const data = await res.json();
     setProductList(data);
