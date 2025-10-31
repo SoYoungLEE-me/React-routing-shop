@@ -130,6 +130,7 @@
     padding-top: 80px;
     box-shadow: 4px 0 12px rgba(0, 0, 0, 0.18);
     padding-bottom: 50px;
+    padding-top: 100px;
   }
 
   .hm-navbar__list {
@@ -170,22 +171,22 @@
 
 /*상품 카드 css*/
 .card {
-  width: 250px;
+  width: 100%; /* 👈 [수정 2] 부모(Col) 넓이를 따르도록 100%로 변경 */
   border: 1px solid #eee;
   border-radius: 10px;
-  overflow: hidden;
+  border-radius: 10px;
   font-family: sans-serif;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .card:hover {
-  transform: translateY(-6px);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
   box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
 }
 
 .card-img {
   width: 100%;
-  height: 300px;
+  aspect-ratio: 1 / 1.2;
   object-fit: cover;
   transition: transform 0.3s ease;
 }
