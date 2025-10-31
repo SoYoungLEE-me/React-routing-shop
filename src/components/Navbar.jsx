@@ -17,9 +17,19 @@ const Navbar = ({ authenticate, setAuthenticate }) => {
   const goToLogin = () => {
     navigate("/login");
   };
+  const goToHome = () => {
+    navigate("/");
+  };
 
   const logout = () => {
     setAuthenticate(false);
+  };
+
+  const search = (e) => {
+    if (e.key === "Enter") {
+      let keyword = e.target.value;
+      navigate(`/?q=${keyword}`);
+    }
   };
 
   return (
@@ -42,6 +52,9 @@ const Navbar = ({ authenticate, setAuthenticate }) => {
           width={100}
           src="https://logos-world.net/wp-content/uploads/2020/04/HM-Logo-1999-present.jpg"
           alt="H&M"
+          onClick={() => {
+            goToHome();
+          }}
         />
       </div>
 
@@ -68,7 +81,7 @@ const Navbar = ({ authenticate, setAuthenticate }) => {
               className="hm-navbar__search-icon"
             />
           </button>
-          <input type="text" placeholder="제품검색" />
+          <input type="text" placeholder="제품검색" onKeyDown={search} />
         </div>
 
         <ul className="hm-navbar__list">
