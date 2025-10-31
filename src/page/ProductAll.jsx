@@ -25,13 +25,26 @@ const ProductAll = () => {
   return (
     <main className="page">
       <Container className="py-4">
-        <Row xs={2} md={3} lg={4} xxl={5}>
-          {productList.map((p) => (
-            <Col key={p.id}>
-              <ProductCard product={p} />
-            </Col>
-          ))}
-        </Row>
+        {productList.length > 0 ? (
+          <Row xs={2} md={3} lg={4} xxl={5} className="g-4">
+            {productList.map((p) => (
+              <Col key={p.id}>
+                <ProductCard product={p} />
+              </Col>
+            ))}
+          </Row>
+        ) : (
+          <div
+            style={{
+              textAlign: "center",
+              marginTop: "100px",
+              fontSize: "18px",
+              color: "#555",
+            }}
+          >
+            검색 결과가 없습니다.
+          </div>
+        )}
       </Container>
     </main>
   );

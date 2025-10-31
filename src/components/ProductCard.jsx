@@ -23,10 +23,12 @@ const ProductCard = ({ product }) => {
         </div>
 
         <div className="card-badge">
-          {product?.choice && (
+          {product?.["choice"] === true && (
             <span className="badge badge-choice">CHOICE</span>
           )}
-          {product?.new && <span className="badge badge-new">NEW</span>}
+          {product?.["new"] === true && (
+            <span className="badge badge-new">NEW</span>
+          )}
         </div>
       </div>
     </div>

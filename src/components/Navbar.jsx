@@ -11,12 +11,12 @@ import { useNavigate } from "react-router-dom";
 
 const Navbar = ({ authenticate, setAuthenticate }) => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [searchOpen, setSearchOpen] = useState(false);
   const navigate = useNavigate();
 
   const goToLogin = () => {
     navigate("/login");
   };
+
   const goToHome = () => {
     navigate("/");
   };
@@ -27,13 +27,18 @@ const Navbar = ({ authenticate, setAuthenticate }) => {
 
   const search = (e) => {
     if (e.key === "Enter") {
-      let keyword = e.target.value;
-      navigate(`/?q=${keyword}`);
+      const keyword = e.target.value.trim(); // 공백 제거
+      if (!keyword) return; // 빈 검색어 무시
+
+      navigate(`/?q=${keyword}`); // 검색 실행
+      e.target.value = ""; // 검색창 비우기
+      setMenuOpen(false); // 메뉴 닫기
     }
   };
 
   return (
     <header className="hm-navbar">
+      {/* 상단 로그인/로그아웃 */}
       <div className="hm-navbar__top">
         <button
           className="hm-navbar__login"
@@ -47,18 +52,18 @@ const Navbar = ({ authenticate, setAuthenticate }) => {
         </button>
       </div>
 
+      {/* 로고 */}
       <div className="hm-navbar__logo">
         <img
           width={100}
           src="https://logos-world.net/wp-content/uploads/2020/04/HM-Logo-1999-present.jpg"
           alt="H&M"
-          onClick={() => {
-            goToHome();
-          }}
+          onClick={goToHome}
+          style={{ cursor: "pointer" }}
         />
       </div>
 
-      {/* 햄버거 (모바일) */}
+      {/* 햄버거 버튼 */}
       <button
         className="hm-navbar__hamburger"
         type="button"
@@ -68,13 +73,14 @@ const Navbar = ({ authenticate, setAuthenticate }) => {
         <FontAwesomeIcon icon={menuOpen ? faXmark : faBars} size="lg" />
       </button>
 
+      {/* 메뉴 영역 */}
       <nav className={`hm-navbar__menu ${menuOpen ? "is-active" : ""}`}>
-        <div className={`hm-navbar__search ${searchOpen ? "is-show" : ""}`}>
+        {/* 검색창 */}
+        <div className="hm-navbar__search">
           <button
             className="hm-navbar__search-btn"
             type="button"
-            aria-label="검색 열기"
-            onClick={() => setSearchOpen((v) => !v)}
+            aria-label="검색 버튼"
           >
             <FontAwesomeIcon
               icon={faMagnifyingGlass}
@@ -84,6 +90,7 @@ const Navbar = ({ authenticate, setAuthenticate }) => {
           <input type="text" placeholder="제품검색" onKeyDown={search} />
         </div>
 
+        {/* 메뉴 리스트 */}
         <ul className="hm-navbar__list">
           <li>여성</li>
           <li>Divided</li>
