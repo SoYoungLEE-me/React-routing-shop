@@ -2,22 +2,41 @@ import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { useParams } from "react-router-dom";
+import { ClipLoader } from "react-spinners";
 
 const ProductDetail = () => {
-  const [detailInfo, setDetailInfo] = useState([]);
+  const [detailInfo, setDetailInfo] = useState(null);
+  const [loading, setLoading] = useState(true);
   let { id } = useParams();
 
   const getProductDetail = async () => {
+    setLoading(true);
     let url = `https://my-json-server.typicode.com/SoYoungLEE-me/React-routing-shop/products/${id}`;
     let res = await fetch(url);
     let data = await res.json();
 
     setDetailInfo(data);
+    setLoading(false);
   };
 
   useEffect(() => {
     getProductDetail();
   }, []);
+
+  if (loading) {
+    return (
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "400px",
+        }}
+      >
+        <ClipLoader color="#36d7b7" size={60} />
+      </div>
+    );
+  }
 
   return (
     <main className="product-detail">
